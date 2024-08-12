@@ -90,5 +90,29 @@ async def calculate_power(request: Request):
     power = data['power']
     result = number ** power
     return result
+    
+Extending to Multiple Endpoints
+ @app.post("/calculate-sum")
+@timing_decorator
+async def calculate_sum(request: Request):
+    data = await request.json()
+    result = sum(data['numbers'])
+    return result
 
+@app.post("/calculate-product")
+@timing_decorator
 ```
+
+### Benefits of Using Decorators with FastAPI
+- **Modularity**: Encapsulate repeated logic (e.g., timing, logging, authentication) in a decorator and apply it across multiple endpoints.
+- **Reusability**: Write the decorator once and reuse it on as many endpoints as needed, reducing code duplication.
+- **Clean Code**: Keep your endpoint functions focused on their core functionality, while decorators handle cross-cutting concerns.
+
+
+## Extending the Project
+- **Adding New Metrics**: You can add additional metrics to the report by modifying the save_plots_to_html function to include more plots or data points.
+- **Custom Payloads**: The script allows for custom JSON payloads via the command-line argument, making it easy to test various endpoints and configurations.
+- **Advanced Ramp-Up Strategies**: You can modify the calculate_ramp_up_step function to implement more sophisticated ramp-up strategies, such as exponential growth or custom intervals.
+
+## Conclusion
+`GenAI_Performance_Test` provides a robust and flexible solution for testing the performance of FastAPI services. It can be easily extended to include additional metrics and configurations, making it a valuable tool for developers and testers alike.
