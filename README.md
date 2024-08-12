@@ -4,6 +4,14 @@
 
 `GenAI_Performance_Test` is a performance testing tool designed to evaluate the response times and throughput of FastAPI services under varying loads. It utilizes `asyncio` for concurrency, `httpx` for making HTTP requests, and `Plotly` for generating interactive charts. The results are saved in a comprehensive HTML report that includes various metrics, providing insights into how your FastAPI service performs under different levels of stress.
 
+
+## Why Use GenAI_Performance_Test Instead of Other Tools Like Locust?
+- **The Gap in Existing Tools**: There are numerous performance testing tools available in the open-source community, such as Locust, JMeter, and Apache Benchmark. These tools are excellent for simulating concurrent users and measuring the performance of web applications. However, they often calculate latency and response time from the perspective of the client—meaning the measurement includes not only the time taken by the server to process the request but also the network latency, queuing delays, and any processing done on the client side.
+- **The Focus on True API Execution Time**: In many scenarios, especially in microservices and API development, developers and engineers are more interested in the actual execution time of the API on the server, rather than the total round-trip time. The total round-trip time can be influenced by factors like network conditions, which might not be relevant when evaluating the efficiency of the server-side code or the infrastructure on which the API is running.
+- **Tailored for FastAPI:**: This tool is designed with FastAPI in mind, allowing for seamless integration and utilization of FastAPI's asynchronous capabilities.
+- **Customization:**: Developers can easily extend the tool to get more insights on performence by writing their own decorators or performence metrics and charts.
+
+
 ## Features
 
 - **Automatic Ramp-Up Calculation**: Automatically determines the ramp-up step based on the provided start, max requests, and duration.
@@ -11,6 +19,17 @@
 - **Customizable Parameters**: Users can customize the URL, payload, and ramp-up configuration through command-line arguments.
 - **High-Resolution Timing**: Uses high-resolution timing to measure response times in milliseconds.
 - **Decorator for FastAPI Endpoints**: Leverages Python decorators to extend the project easily to any FastAPI endpoint, making it modular and reusable.
+
+### Comparison with Locust
+
+| **Feature**                    | **Locust**                                                 | **GenAI_Performance_Test**                             |
+|--------------------------------|------------------------------------------------------------|--------------------------------------------------------|
+| **Latency Measurement**        | Includes network and client-side latency                   | Measures actual server-side execution time only         |
+| **Focus**                      | End-to-end performance from the client's perspective       | Server-side performance from the API's perspective      |
+| **Customization**              | Limited to client-side logic                               | Highly customizable via Python decorators              |
+| **Integration with FastAPI**   | Generic, framework-agnostic                                | Specifically designed for seamless integration with FastAPI |
+| **Reporting**                  | Provides basic metrics, often requiring external tools for detailed analysis | Generates detailed, interactive HTML reports focused on server-side metrics |
+
 
 ## Getting Started
 
